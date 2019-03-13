@@ -50,6 +50,7 @@ public class Maquina {
                         + opcoes.getCafe()
                         + ", Confirmar o pedido? \n"
                         + "\n 1. sim \n 2. não" + "\n");
+                break;
         }
         return pedidoSelecionado;
     }
@@ -70,6 +71,7 @@ public class Maquina {
             default:
                 System.out.println("\n" + "Obrigado, volte sempre!");
                 System.exit(0);
+                break;
         }
         return pedidoConfirmado;
     }
