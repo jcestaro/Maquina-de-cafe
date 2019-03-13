@@ -77,7 +77,7 @@ public class Maquina {
     }
 
     public String opcoesCobrarPedido (){
-        System.out.println("\n" + "Por favor escolha a moeda para o pagamento." + "\n"
+        System.out.println("\n" + "Por favor escolha o valor/moeda para o pagamento." + "\n"
                 + "\n" + "1. " + "R$ 1.00"
                 + "\n" + "2. " + "R$ 2.00"
                 + "\n" + "3. " + "R$ 5.00"
