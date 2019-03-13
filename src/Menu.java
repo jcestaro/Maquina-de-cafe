@@ -1,4 +1,4 @@
-public class Opcoes {
+public class Menu {
     private String cafe = "Café";
     private String cafeComLeite = "Café com Leite";
     private String capuccino = "Capuccino";

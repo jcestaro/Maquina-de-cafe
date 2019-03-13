@@ -2,7 +2,7 @@ public class Maquina {
 
     private String pedidoConfirmado;
     private String pedidoSelecionado;
-    Opcoes opcoes = new Opcoes();
+    Menu menu = new Menu();
     private String opcoesPagamento;
     private String pedidoCobrado;
     private String pedidoPreparado;
@@ -12,42 +12,42 @@ public class Maquina {
         switch (numeroPedido) {
             case 1:
                 System.out.println("\n" + "Você selecionou "
-                        + opcoes.getCafe()
+                        + menu.getCafe()
                         + ", Confirmar o pedido? \n"
                         + "\n 1. sim \n 2. não" + "\n");
                 break;
 
             case 2:
                 System.out.println("\n" + "Você selecionou "
-                        + opcoes.getCafeComLeite()
+                        + menu.getCafeComLeite()
                         + ", Confirmar o pedido? \n"
                         + "\n 1. sim \n 2. não" + "\n");
                 break;
 
             case 3:
                 System.out.println("\n" + "Você selecionou "
-                        + opcoes.getCapuccino()
+                        + menu.getCapuccino()
                         + ", Confirmar o pedido? \n"
                         + "\n 1. sim \n 2. não" + "\n");
                 break;
 
             case 4:
                 System.out.println("\n" + "Você selecionou "
-                        + opcoes.getCha()
+                        + menu.getCha()
                         + ", Confirmar o pedido? \n"
                         + "\n 1. sim \n 2. não" + "\n");
                 break;
 
             case 5:
                 System.out.println("\n" + "Você selecionou "
-                        + opcoes.getAguaQuente()
+                        + menu.getAguaQuente()
                         + ", Confirmar o pedido? \n"
                         + "\n 1. sim \n 2. não" + "\n");
                 break;
 
             default:
                 System.out.println("\n" + "Você não selecionou nenhuma opção válida, portanto a opção padrão é: "
-                        + opcoes.getCafe()
+                        + menu.getCafe()
                         + ", Confirmar o pedido? \n"
                         + "\n 1. sim \n 2. não" + "\n");
                 break;

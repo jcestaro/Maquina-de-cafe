@@ -4,13 +4,13 @@ public class Main {
 
     public static void main (String[] args) {
         Maquina maquina = new Maquina();
-        Opcoes opcoes = new Opcoes();
+        Menu menu = new Menu();
         Acucar acucar = new Acucar();
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n" + "Bem-vindo a Máquina de Café." + "\n");
 
-        opcoes.mostraOpcoes();
+        menu.mostraOpcoes();
 
         int numeroPedido = scanner.nextInt();
         maquina.selecionarPedido(numeroPedido);
