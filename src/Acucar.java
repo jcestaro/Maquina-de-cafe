@@ -21,6 +21,7 @@ public class Acucar {
     }
 
     public int getNivelAcucarPadrao() {
+
         return nivelAcucarPadrao;
     }
 }

@@ -194,7 +194,7 @@ public class Maquina {
                     Thread.sleep(1000);
                     System.out.println("Adicionando o leite...");
                     Thread.sleep(1000);
-                    System.out.println("Adicionando o chocolate...");
+                    System.out.println("Adicionando o chocolate em pó...");
                     Thread.sleep(1000);
                     System.out.println("Adicionando a canela em pó...");
                     Thread.sleep(1000);
