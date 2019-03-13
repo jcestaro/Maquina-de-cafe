@@ -9,6 +9,19 @@ public class Opcoes {
     private double precoCapuccino = 2.00;
     private double precoCha = 1.00;
     private int precoAguaQuente = 0;
+    private String menuOpcoes;
+
+    public String mostraOpcoes() {
+        System.out.println("Essas são suas opções: \n"
+                + "1. " + getCafe() + " - R$ " + getPrecoCafe() + "\n"
+                + "2. " + getCafeComLeite() + " - R$ " + getPrecoCafeComLeite() + "\n"
+                + "3. " + getCapuccino() + " - R$ " + getPrecoCapuccino() + "\n"
+                + "4. " + getCha() + " - R$ " + getPrecoCha() + "\n"
+                + "5. " + getAguaQuente() + " - R$ " + getPrecoAguaQuente() + "\n");
+
+        System.out.println("O que deseja? Digite o número referente ao seu pedido." + "\n");
+        return menuOpcoes;
+    }
 
     public String getCafe() {
         return cafe;

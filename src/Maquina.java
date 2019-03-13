@@ -1,27 +1,15 @@
-import java.util.Scanner;
-
 public class Maquina {
 
-    public static void main (String[] args) {
-        Opcoes opcoes = new Opcoes();
-        Scanner scanner = new Scanner(System.in);
+    private String pedidoConfirmado;
+    private String pedidoSelecionado;
+    Opcoes opcoes = new Opcoes();
+    private String opcoesPagamento;
+    private String pedidoCobrado;
+    private String pedidoPreparado;
+    private String pedidoEntregue;
 
-        System.out.println("\n" + "Bem-vindo a Máquina de Café." + "\n");
-        System.out.println("Essas são suas opções: \n"
-                + "1. " + opcoes.getCafe() + " - R$ " + opcoes.getPrecoCafe() + "\n"
-                + "2. " + opcoes.getCafeComLeite() + " - R$ " + opcoes.getPrecoCafeComLeite() + "\n"
-                + "3. " + opcoes.getCapuccino() + " - R$ " + opcoes.getPrecoCapuccino() + "\n"
-                + "4. " + opcoes.getCha() + " - R$ " + opcoes.getPrecoCha() + "\n"
-                + "5. " + opcoes.getAguaQuente() + " - R$ " + opcoes.getPrecoAguaQuente() + "\n");
-
-        System.out.println("O que deseja? Digite o número referente ao seu pedido." + "\n");
-
-        // INICIO DO MÉTODO SELECIONAR PEDIDO
-
-        int numeroPedido = scanner.nextInt();
-
+    public String selecionarPedido (int numeroPedido) {
         switch (numeroPedido) {
-
             case 1:
                 System.out.println("\n" + "Você selecionou "
                         + opcoes.getCafe()
@@ -63,14 +51,15 @@ public class Maquina {
                         + ", Confirmar o pedido? \n"
                         + "\n 1. sim \n 2. não" + "\n");
         }
+        return pedidoSelecionado;
+    }
 
-
-        int opcaoSelecionada = scanner.nextInt();
+    public String confirmarPedido (int opcaoSelecionada) {
 
         switch (opcaoSelecionada) {
 
             case 1:
-                System.out.println("\n" + "Por favor selecione o nível de Açucar, de 1 a 5." + "\n");
+                System.out.println("\n" + "Por favor selecione o nível de Açucar, de 0 a 5." + "\n");
                 break;
 
             case 2:
@@ -80,37 +69,21 @@ public class Maquina {
             default:
                 System.out.println("\n" + "Obrigado, volte sempre!");
         }
+        return pedidoConfirmado;
+    }
 
-        int nivelAcucarSelecionado = scanner.nextInt();
-        int nivelAcucarAguaQuente = 0;
-        int nivelAcucarPadrao = 3;
-
-        if (nivelAcucarSelecionado <= 5 && nivelAcucarSelecionado >= 1 && numeroPedido != 5) {
-
-            System.out.println("\n" + "O nível de açucar selecionado foi: " + nivelAcucarSelecionado);
-
-        } else if (numeroPedido == 5) {
-
-            System.out.println("\n" + "Na opção água quente não há açucar.");
-        } else {
-
-            System.out.println("\n" + "Nível de açucar inválido.");
-            System.out.println("O Nível de açucar será o padrão: " + nivelAcucarPadrao);
-        }
-
-        // FIM DO MÉTODO SELECIONAR PEDIDO
-
-        // COMEÇO DO MÉTODO COBRAR PEDIDO
-
+    public String opcoesCobrarPedido (){
         System.out.println("\n" + "Por favor escolha o valor para o pagamento." + "\n"
                 + "\n" + "1. " + "R$ 1.00"
                 + "\n" + "2. " + "R$ 2.00"
                 + "\n" + "3. " + "R$ 5.00"
                 + "\n" + "4. " + "R$ 10.00" + "\n");
 
-        int cobrar = scanner.nextInt();
+        return opcoesPagamento;
+    }
 
-        switch (cobrar) {
+    public String cobrarPedido (int dinheiro, int numeroPedido) {
+        switch (dinheiro) {
 
             case 1:
                 if (numeroPedido == 2 || numeroPedido == 3) {
@@ -171,11 +144,112 @@ public class Maquina {
                 break;
         }
 
-        // FIM DO MÉTODO COBRAR PEDIDO
+        return pedidoCobrado;
+    }
 
-        // INICIO DO MÉTODO PREPARAR PEDIDO
+    public String preparaPedido(int numeroPedido) {
+        switch (numeroPedido) {
 
+            case 1:
+                try{
+                    System.out.println("\n" + "Fervendo a água...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o filtro...");
+                    Thread.sleep(1000);
+                    System.out.println("Colocando o pó do café no filtro...");
+                    Thread.sleep(1000);
+                    System.out.println("Colocando o café no copo...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o açucar...");
+                }
+                catch (InterruptedException ex) {
+                    System.out.println(ex);
+                }
+                break;
 
+            case 2:
+                try{
+                    System.out.println("\n" + "Fervendo a água...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o filtro...");
+                    Thread.sleep(1000);
+                    System.out.println("Colocando o pó do café no filtro...");
+                    Thread.sleep(1000);
+                    System.out.println("Colocando o café no copo...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o leite no copo...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o açucar...");
+                }
+                catch (InterruptedException ex) {
+                    System.out.println(ex);
+                }
+                break;
+
+            case 3:
+                try{
+                    System.out.println("\n" + "Fervendo a água...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o filtro...");
+                    Thread.sleep(1000);
+                    System.out.println("Colocando o pó do café no filtro...");
+                    Thread.sleep(1000);
+                    System.out.println("Colocando o café no copo...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o leite...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o chocolate...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando a canela em pó...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o açucar...");
+                }
+                catch (InterruptedException ex) {
+                    System.out.println(ex);
+                }
+                break;
+
+            case 4:
+                try{
+                    System.out.println("\n" + "Fervendo a água...");
+                    Thread.sleep(1000);
+                    System.out.println("Colocando o chá na água...");
+                    Thread.sleep(3000);
+                    System.out.println("Aguarde...");
+                    Thread.sleep(1000);
+                    System.out.println("Colocando o chá no copo...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o açucar...");
+                }
+                catch (InterruptedException ex) {
+                    System.out.println(ex);
+                }
+                break;
+
+            case 5:
+                try{
+                    System.out.println("\n" + "Fervendo a água...");
+                    Thread.sleep(2000);
+                    System.out.println("Colocando a água quente no copo.");
+                }
+                catch (InterruptedException ex) {
+                    System.out.println(ex);
+                }
+                break;
+        }
+        return pedidoPreparado;
+    }
+
+    public String entregaPedido (int numeroPedido) {
+        try {
+            System.out.println("\n" + "Seu pedido de número: " + numeroPedido + " está pronto!");
+            Thread.sleep(2000);
+            System.out.println("Obrigado, volte sempre!");
+        }
+        catch (InterruptedException ex) {
+            System.out.println(ex);
+        }
+
+        return pedidoEntregue;
     }
 }
-
