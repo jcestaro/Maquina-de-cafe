@@ -29,6 +29,6 @@ public class Main {
 
         maquina.preparaPedido(numeroPedido);
 
-        maquina.entregaPedido(numeroPedido);
+        maquina.entregaPedido();
     }
 }

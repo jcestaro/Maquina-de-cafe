@@ -75,7 +75,7 @@ public class Maquina {
     }
 
     public String opcoesCobrarPedido (){
-        System.out.println("\n" + "Por favor escolha o valor para o pagamento." + "\n"
+        System.out.println("\n" + "Por favor escolha a moeda para o pagamento." + "\n"
                 + "\n" + "1. " + "R$ 1.00"
                 + "\n" + "2. " + "R$ 2.00"
                 + "\n" + "3. " + "R$ 5.00"
@@ -90,7 +90,9 @@ public class Maquina {
             switch (dinheiro) {
                 case 1:
                     if (numeroPedido == 2 || numeroPedido == 3) {
-                        System.out.println("\n" + "O valor para pagamento selecionado não é o suficiente para este pedido." + "\n");
+                        System.out.println("\n" + "O valor para pagamento selecionado não é o suficiente para este pedido.");
+                        System.out.println("Por favor tente novamente.");
+                        System.exit(0);
                     } else if (numeroPedido == 5) {
                         System.out.println("\n" + "Seu troco é: R$ 1.00" + "\n"
                                 + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
@@ -156,24 +158,8 @@ public class Maquina {
     }
 
     public String preparaPedido(int numeroPedido) {
-        switch (numeroPedido) {
 
-            case 1:
-                try{
-                    System.out.println("\n" + "Fervendo a água...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Colocando o pó do café no filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Colocando o café no copo...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o açucar...");
-                }
-                catch (InterruptedException ex) {
-                    System.out.println(ex);
-                }
-                break;
+        switch (numeroPedido) {
 
             case 2:
                 try{
@@ -244,13 +230,30 @@ public class Maquina {
                     System.out.println(ex);
                 }
                 break;
+
+            default:
+                try{
+                    System.out.println("\n" + "Fervendo a água...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o filtro...");
+                    Thread.sleep(1000);
+                    System.out.println("Colocando o pó do café no filtro...");
+                    Thread.sleep(1000);
+                    System.out.println("Colocando o café no copo...");
+                    Thread.sleep(1000);
+                    System.out.println("Adicionando o açucar...");
+                }
+                catch (InterruptedException ex) {
+                    System.out.println(ex);
+                }
+                break;
         }
         return pedidoPreparado;
     }
 
-    public String entregaPedido (int numeroPedido) {
+    public String entregaPedido () {
         try {
-            System.out.println("\n" + "Seu pedido de número: " + numeroPedido + " está pronto!");
+            System.out.println("\n" + "Seu pedido está pronto!");
             Thread.sleep(2000);
             System.out.println("Obrigado, volte sempre!");
         }

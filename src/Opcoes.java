@@ -19,7 +19,7 @@ public class Opcoes {
                 + "4. " + getCha() + " - R$ " + getPrecoCha() + "\n"
                 + "5. " + getAguaQuente() + " - R$ " + getPrecoAguaQuente() + "\n");
 
-        System.out.println("O que deseja? Digite o número referente ao seu pedido." + "\n");
+        System.out.println("Digite o número referente ao seu pedido." + "\n");
         return menuOpcoes;
     }
 
