@@ -85,65 +85,71 @@ public class Maquina {
     }
 
     public String cobrarPedido (int dinheiro, int numeroPedido) {
-        switch (dinheiro) {
 
-            case 1:
-                if (numeroPedido == 2 || numeroPedido == 3) {
-                    System.out.println("\n" + "O valor para pagamento selecionado não é o suficiente para este pedido." + "\n");
-                } else if (numeroPedido == 5) {
-                    System.out.println("\n" + "Seu troco é: R$ 1.00" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                } else {
-                    System.out.println("\n" + "Obrigado, agora iremos preparar o seu pedido." + "\n");
-                }
-                break;
+        if (dinheiro <= 4 && dinheiro >= 1) {
+            switch (dinheiro) {
+                case 1:
+                    if (numeroPedido == 2 || numeroPedido == 3) {
+                        System.out.println("\n" + "O valor para pagamento selecionado não é o suficiente para este pedido." + "\n");
+                    } else if (numeroPedido == 5) {
+                        System.out.println("\n" + "Seu troco é: R$ 1.00" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    } else {
+                        System.out.println("\n" + "Obrigado, agora iremos preparar o seu pedido." + "\n");
+                    }
+                    break;
 
-            case 2:
-                if (numeroPedido == 1 || numeroPedido == 4) {
-                    System.out.println("\n" + "Seu troco é: R$ 1.00" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                } else if (numeroPedido == 5) {
-                    System.out.println("\n" + "Seu troco é: R$ 2.00" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                } else if (numeroPedido == 2) {
-                    System.out.println("\n" + "Seu troco é: R$ 0.50" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                } else if (numeroPedido == 3) {
-                    System.out.println("\n" + "Obrigado, agora iremos preparar o seu pedido." + "\n");
-                }
-                break;
+                case 2:
+                    if (numeroPedido == 1 || numeroPedido == 4) {
+                        System.out.println("\n" + "Seu troco é: R$ 1.00" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    } else if (numeroPedido == 5) {
+                        System.out.println("\n" + "Seu troco é: R$ 2.00" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    } else if (numeroPedido == 2) {
+                        System.out.println("\n" + "Seu troco é: R$ 0.50" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    } else if (numeroPedido == 3) {
+                        System.out.println("\n" + "Obrigado, agora iremos preparar o seu pedido." + "\n");
+                    }
+                    break;
 
-            case 3:
-                if (numeroPedido == 1 || numeroPedido == 4) {
-                    System.out.println("\n" + "Seu troco é: R$ 4.00" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                } else if (numeroPedido == 5) {
-                    System.out.println("\n" + "Seu troco é: R$ 5.00" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                } else if (numeroPedido == 2) {
-                    System.out.println("\n" + "Seu troco é: R$ 3.50" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                } else if (numeroPedido == 3) {
-                    System.out.println("\n" + "Seu troco é: R$ 3.00" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                }
-                break;
+                case 3:
+                    if (numeroPedido == 1 || numeroPedido == 4) {
+                        System.out.println("\n" + "Seu troco é: R$ 4.00" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    } else if (numeroPedido == 5) {
+                        System.out.println("\n" + "Seu troco é: R$ 5.00" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    } else if (numeroPedido == 2) {
+                        System.out.println("\n" + "Seu troco é: R$ 3.50" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    } else if (numeroPedido == 3) {
+                        System.out.println("\n" + "Seu troco é: R$ 3.00" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    }
+                    break;
 
-            case 4:
-                if (numeroPedido == 1 || numeroPedido == 4) {
-                    System.out.println("\n" + "Seu troco é: R$ 9.00" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                } else if (numeroPedido == 5) {
-                    System.out.println("\n" + "Seu troco é: R$ 10.00" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                } else if (numeroPedido == 2) {
-                    System.out.println("\n" + "Seu troco é: R$ 8.50" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                } else if (numeroPedido == 3) {
-                    System.out.println("\n" + "Seu troco é: R$ 8.00" + "\n"
-                            + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
-                }
+                case 4:
+                    if (numeroPedido == 1 || numeroPedido == 4) {
+                        System.out.println("\n" + "Seu troco é: R$ 9.00" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    } else if (numeroPedido == 5) {
+                        System.out.println("\n" + "Seu troco é: R$ 10.00" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    } else if (numeroPedido == 2) {
+                        System.out.println("\n" + "Seu troco é: R$ 8.50" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    } else if (numeroPedido == 3) {
+                        System.out.println("\n" + "Seu troco é: R$ 8.00" + "\n"
+                                + "\n" + "Obrigado, agora iremos preparar o seu pedido" + "\n");
+                    }
                 break;
+            }
+        } else {
+            System.out.println("\n" + "Forma de pagamento inválida!");
+            System.out.println("Por favor, tente novamente.");
+            System.exit(0);
         }
 
         return pedidoCobrado;
