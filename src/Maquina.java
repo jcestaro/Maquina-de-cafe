@@ -64,10 +64,12 @@ public class Maquina {
 
             case 2:
                 System.out.println("\n" + "Obrigado, volte sempre!");
+                System.exit(0);
                 break;
 
             default:
                 System.out.println("\n" + "Obrigado, volte sempre!");
+                System.exit(0);
         }
         return pedidoConfirmado;
     }
