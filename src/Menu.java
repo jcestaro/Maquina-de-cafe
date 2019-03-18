@@ -9,18 +9,18 @@ public class Menu {
     private double precoCapuccino = 2.00;
     private double precoCha = 1.00;
     private int precoAguaQuente = 0;
-    private String menuOpcoes;
 
-    public String mostraOpcoes() {
-        System.out.println("Essas são suas opções: \n"
-                + "1. " + getCafe() + " - R$ " + getPrecoCafe() + "\n"
-                + "2. " + getCafeComLeite() + " - R$ " + getPrecoCafeComLeite() + "\n"
-                + "3. " + getCapuccino() + " - R$ " + getPrecoCapuccino() + "\n"
-                + "4. " + getCha() + " - R$ " + getPrecoCha() + "\n"
-                + "5. " + getAguaQuente() + " - R$ " + getPrecoAguaQuente() + "\n");
-
-        System.out.println("Digite o número referente ao seu pedido." + "\n");
-        return menuOpcoes;
+    public void mostraOpcoes() {
+        System.out.println();
+        System.out.println("Bem-vindo a Máquina de Café.");
+        System.out.println();
+        System.out.println("Essas são suas opções: ");
+        System.out.println("1. " + getCafe() + " - R$ " + getPrecoCafe());
+        System.out.println("2. " + getCafeComLeite() + " - R$ " + getPrecoCafeComLeite());
+        System.out.println("3. " + getCapuccino() + " - R$ " + getPrecoCapuccino());
+        System.out.println("4. " + getCha() + " - R$ " + getPrecoCha());
+        System.out.println("5. " + getAguaQuente() + " - R$ " + getPrecoAguaQuente());
+        System.out.println();
     }
 
     public String getCafe() {
