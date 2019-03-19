@@ -5,6 +5,7 @@ public class Ingrediente {
     private String leiteEmPo = "Leite em Pó";
     private String chaDeLimao = "Chá de Limão";
     private String agua = "Água";
+    Acucar acucar = new Acucar();
 
     public String getPoDeCafe() {
         return poDeCafe;

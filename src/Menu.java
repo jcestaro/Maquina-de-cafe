@@ -9,7 +9,6 @@ public class Menu {
     private double precoCapuccino = 2.00;
     private double precoCha = 1.00;
     private int precoAguaQuente = 0;
-    Display display = new Display();
 
     public void mostraOpcoes() {
         System.out.println();

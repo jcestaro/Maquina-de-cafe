@@ -1,27 +1,29 @@
 public class Display {
 
-    Estoque estoque = new Estoque();
-    Acucar acucar = new Acucar();
-    Ingrediente ingredientes = new Ingrediente();
-
-
-    public void mostraOpcoesReabastecimento (){
-        System.out.println("Por favor escolha um item para reabastecer");
-        System.out.println();
-        System.out.println("1. " + ingredientes.getPoDeCafe() + ", Maximo de unidades: " + estoque.getLimiteEstoquePoDeCafe() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualPoDeCafe());
-        System.out.println("2. " + ingredientes.getChocolate() + ", Maximo de unidades: " + estoque.getLimiteEstoqueChocolate() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualChocolate());
-        System.out.println("3. " + ingredientes.getLeiteEmPo() + ", Maximo de unidades: " + estoque.getLimiteEstoqueLeiteEmPo() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualLeiteEmPo());
-        System.out.println("4. " + ingredientes.getChaDeLimao() + ", Maximo de unidades: " + estoque.getLimiteEstoqueChaDeLimao() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualChaDeLimao());
-        System.out.println("5. " + estoque.getCopo() + ", Maximo de unidades: " + estoque.getLimiteEstoqueCopo() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualCopo());
-        System.out.println("6. " + acucar.getAcucar() + ", Maximo de unidades: " + acucar.getLimiteEstoqueAcucar() + ", Quantidade atual disponível: " + acucar.getQuantidadeAtualAcucar());
-        System.out.println();
-    }
-
     public void mostraMaquinaDesligada () {
         System.out.println();
         System.out.println("------Maquina desligada------");
         System.out.println();
-        System.out.println("Por favor reabasteça o estoque antes de ligar.");
+        System.out.println("1. Abrir o compartimento para reabastecer o estoque");
+        System.out.println("2. Ligar Maquina");
+        System.out.println();
+    }
+
+    public void desligandoMaquina () {
+        try {
+            System.out.println();
+            System.out.println("Desligando a Máquina...");
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public void mostraFecharCompartimentoOuContinuarAbastecendo (){
+        System.out.println();
+        System.out.println("1. Fechar compartimento");
+        System.out.println("2. Continuar abastecendo");
         System.out.println();
     }
 
@@ -39,6 +41,16 @@ public class Display {
     public void mostraAgradecimentoParaPrepararPedido () {
         System.out.println();
         System.out.println("Obrigado, agora iremos preparar o seu pedido");
+        System.out.println();
+    }
+
+    public void mostraOpcoesParaCobrarPedido () {
+        System.out.println();
+        System.out.println("Por favor escolha o valor/moeda para o pagamento.");
+        System.out.println("1. " + "R$ 1.00");
+        System.out.println("2. " + "R$ 2.00");
+        System.out.println("3. " + "R$ 5.00");
+        System.out.println("4. " + "R$ 10.00");
         System.out.println();
     }
 }
