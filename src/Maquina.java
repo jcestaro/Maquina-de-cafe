@@ -4,63 +4,165 @@ public class Maquina {
 
     Menu menu = new Menu();
     Acucar acucar = new Acucar();
+    Estoque estoque = new Estoque();
+    Ingrediente ingredientes = new Ingrediente();
+    Display display = new Display();
+    Scanner scanner = new Scanner(System.in);
     private int numeroMaximoOpcoesDeCobranca = 4;
     private int numeroMinimoOpcoesDeCobranca = 1;
 
+    public void escolherQntdUnidadesParaAbastecimento (int numeroDoIngredienteParaReabastecer, int quantidadeDeUnidades) {
+        switch (numeroDoIngredienteParaReabastecer) {
+            case 1:
+                estoque.setQuantidadeAtualPoDeCafe(quantidadeDeUnidades);
+                System.out.println();
+                System.out.println("Você agora possui: " + estoque.getQuantidadeAtualPoDeCafe() + " unidades no estoque de " + ingredientes.getPoDeCafe());
+                break;
+
+            case 2:
+                estoque.setQuantidadeAtualChocolate(quantidadeDeUnidades);
+                System.out.println();
+                System.out.println("Você agora possui: " + estoque.getQuantidadeAtualChocolate() + " unidades no estoque de " + ingredientes.getChocolate());
+                break;
+
+            case 3:
+                estoque.setQuantidadeAtualLeiteEmPo(quantidadeDeUnidades);
+                System.out.println();
+                System.out.println("Você agora possui: " + estoque.getQuantidadeAtualLeiteEmPo() + " unidades no estoque de " + ingredientes.getLeiteEmPo());
+                break;
+
+            case 4:
+                estoque.setQuantidadeAtualChaDeLimao(quantidadeDeUnidades);
+                System.out.println();
+                System.out.println("Você agora possui: " + estoque.getQuantidadeAtualChaDeLimao() + " unidades no estoque de " + ingredientes.getChaDeLimao());
+                break;
+
+            case 5:
+                estoque.setQuantidadeAtualCopo(quantidadeDeUnidades);
+                System.out.println();
+                System.out.println("Você agora possui: " + estoque.getQuantidadeAtualCopo() + " unidades no estoque de " + estoque.getCopo());
+                break;
+
+            case 6:
+                acucar.setQuantidadeAtualAcucar(quantidadeDeUnidades);
+                System.out.println();
+                System.out.println("Você agora possui: " + acucar.getQuantidadeAtualAcucar() + " unidades no estoque de " + acucar.getAcucar());
+                break;
+
+            default:
+                System.out.println();
+                System.out.println("Nenhum item selecionado");
+                System.out.println();
+                escolherItemParaReabastecer();
+                break;
+        }
+        escolherItemParaReabastecer();
+    }
+
+    public void abastecerItemEscolhido (int numeroDoIngredienteParaReabastecer) {
+        switch (numeroDoIngredienteParaReabastecer) {
+            case 1:
+                System.out.println();
+                System.out.println("Você escolheu reabastecer: " + ingredientes.getPoDeCafe());
+                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
+                break;
+
+            case 2:
+                System.out.println();
+                System.out.println("Você escolheu reabastecer: " + ingredientes.getChocolate());
+                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
+                break;
+
+            case 3:
+                System.out.println();
+                System.out.println("Você escolheu reabastecer: " + ingredientes.getLeiteEmPo());
+                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
+                break;
+
+            case 4:
+                System.out.println();
+                System.out.println("Você escolheu reabastecer: " + ingredientes.getChaDeLimao());
+                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
+                break;
+
+            case 5:
+                System.out.println();
+                System.out.println("Você escolheu reabastecer: " + estoque.getCopo());
+                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
+                break;
+
+            case 6:
+                System.out.println();
+                System.out.println("Você escolheu reabastecer: " + acucar.getAcucar());
+                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
+                System.out.println();
+                break;
+
+            default:
+                System.out.println();
+                System.out.println("Nenhum item selecionado");
+                System.out.println();
+                escolherItemParaReabastecer();
+                break;
+        }
+
+        int quantidadeDeUnidades = scanner.nextInt();
+
+        escolherQntdUnidadesParaAbastecimento(numeroDoIngredienteParaReabastecer, quantidadeDeUnidades);
+    }
+
+    public void escolherItemParaReabastecer () {
+        display.mostraOpcoesReabastecimento();
+        int numeroDoIngredienteParaReabastecer = scanner.nextInt();
+        abastecerItemEscolhido(numeroDoIngredienteParaReabastecer);
+    }
+
+    public void maquinaDesligada () {
+        display.mostraMaquinaDesligada();
+    }
+
     public void pedirNumeroDoPedido () {
-        System.out.println("Digite o número referente ao seu pedido.");
-        System.out.println();
+        display.mostraPedirNumeroDoPedido();
     }
 
-    public void perguntaDeConfirmacaoPedido () {
-        System.out.println("Confirmar o pedido?");
-        System.out.println("1. sim");
-        System.out.println("2. não");
-    }
-
-    public void agradecimentoParaPrepararPedido () {
-        System.out.println();
-        System.out.println("Obrigado, agora iremos preparar o seu pedido");
-        System.out.println();
-    }
 
     public void selecionarPedido (int numeroPedido) {
         switch (numeroPedido) {
             case 1:
                 System.out.println();
                 System.out.println("Você selecionou: " + menu.getCafe());
-                perguntaDeConfirmacaoPedido();
+                display.mostraPerguntaDeConfirmacaoDoPedido();
                 break;
 
             case 2:
                 System.out.println();
                 System.out.println("Você selecionou: " + menu.getCafeComLeite());
-                perguntaDeConfirmacaoPedido();
+                display.mostraPerguntaDeConfirmacaoDoPedido();
                 break;
 
             case 3:
                 System.out.println();
                 System.out.println("Você selecionou: " + menu.getCapuccino());
-                perguntaDeConfirmacaoPedido();
+                display.mostraPerguntaDeConfirmacaoDoPedido();
                 break;
 
             case 4:
                 System.out.println();
                 System.out.println("Você selecionou: " + menu.getCha());
-                perguntaDeConfirmacaoPedido();
+                display.mostraPerguntaDeConfirmacaoDoPedido();
                 break;
 
             case 5:
                 System.out.println();
                 System.out.println("Você selecionou: " + menu.getAguaQuente());
-                perguntaDeConfirmacaoPedido();
+                display.mostraPerguntaDeConfirmacaoDoPedido();
                 break;
 
             default:
                 System.out.println();
                 System.out.println("Você não selecionou nenhuma opção válida, portanto a opção padrão é: "
                         + menu.getCafe());
-                perguntaDeConfirmacaoPedido();
+                display.mostraPerguntaDeConfirmacaoDoPedido();
                 break;
         }
     }
@@ -113,9 +215,9 @@ public class Maquina {
                     } else if (numeroPedido == 5) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 1.00");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     } else {
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     }
                     break;
 
@@ -123,17 +225,17 @@ public class Maquina {
                     if (numeroPedido == 1 || numeroPedido == 4) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 1.00");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 5) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 2.00");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 2) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 0.50");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 3) {
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     }
                     break;
 
@@ -141,19 +243,19 @@ public class Maquina {
                     if (numeroPedido == 1 || numeroPedido == 4) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 4.00");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 5) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 5.00");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 2) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 3.50");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 3) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 3.00");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     }
                     break;
 
@@ -161,19 +263,19 @@ public class Maquina {
                     if (numeroPedido == 1 || numeroPedido == 4) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 9.00");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 5) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 10.00");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 2) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 8.50");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 3) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 8.00");
-                        agradecimentoParaPrepararPedido();
+                        display.mostraAgradecimentoParaPrepararPedido();
                     }
                 break;
             }
@@ -302,27 +404,31 @@ public class Maquina {
         Menu menu = new Menu();
         Acucar acucar = new Acucar();
         Scanner scanner = new Scanner(System.in);
+        Estoque estoque = new Estoque();
 
-        menu.mostraOpcoes();
-        maquina.pedirNumeroDoPedido();
+        maquina.maquinaDesligada();
+        maquina.escolherItemParaReabastecer();
 
-        int numeroDoPedido = scanner.nextInt();
-        maquina.selecionarPedido(numeroDoPedido);
-
-        int opcaoSelecionada = scanner.nextInt();
-        maquina.confirmarPedido(opcaoSelecionada);
-
-        int nivelAcucarSelecionado = scanner.nextInt();
-
-        acucar.selecionarNivelAcucar(nivelAcucarSelecionado, numeroDoPedido);
-
-        maquina.opcoesCobrarPedido();
-
-        int dinheiro = scanner.nextInt();
-        maquina.cobrarPedido(dinheiro, numeroDoPedido);
-
-        maquina.preparaPedido(numeroDoPedido);
-
-        maquina.entregaPedido();
+//        menu.mostraOpcoes();
+//        maquina.pedirNumeroDoPedido();
+//
+//        int numeroDoPedido = scanner.nextInt();
+//        maquina.selecionarPedido(numeroDoPedido);
+//
+//        int opcaoSelecionada = scanner.nextInt();
+//        maquina.confirmarPedido(opcaoSelecionada);
+//
+//        int nivelAcucarSelecionado = scanner.nextInt();
+//
+//        acucar.selecionarNivelAcucar(nivelAcucarSelecionado, numeroDoPedido);
+//
+//        maquina.opcoesCobrarPedido();
+//
+//        int dinheiro = scanner.nextInt();
+//        maquina.cobrarPedido(dinheiro, numeroDoPedido);
+//
+//        maquina.preparaPedido(numeroDoPedido);
+//
+//        maquina.entregaPedido();
     }
 }
