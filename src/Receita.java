@@ -1,5 +1,7 @@
 public class Receita {
 
+    public int consumoDeIngrediente = -1;
+
     public void receitaDeCafe (){
         try {
             System.out.println();

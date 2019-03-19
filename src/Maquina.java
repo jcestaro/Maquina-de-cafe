@@ -346,10 +346,10 @@ public class Maquina {
                         && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado) {
 
                     display.mostraAgradecimentoParaPrepararPedido();
-                    estoque.setQuantidadeAtualPoDeCafe(-1);
-                    estoque.setQuantidadeAtualLeiteEmPo(-1);
-                    estoque.setQuantidadeAtualCopo(-1);
-                    acucar.setQuantidadeAtualAcucar(-1 * nivelAcucarSelecionado);
+                    estoque.setQuantidadeAtualPoDeCafe(receita.consumoDeIngrediente);
+                    estoque.setQuantidadeAtualLeiteEmPo(receita.consumoDeIngrediente);
+                    estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
+                    acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
                     receita.receitaDeCafeComLeite();
                     entregaPedido();
                 } else {
@@ -366,11 +366,11 @@ public class Maquina {
                         && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado){
 
                     display.mostraAgradecimentoParaPrepararPedido();
-                    estoque.setQuantidadeAtualPoDeCafe(-1);
-                    estoque.setQuantidadeAtualLeiteEmPo(-1);
-                    estoque.setQuantidadeAtualCopo(-1);
-                    estoque.setQuantidadeAtualChocolate(-1);
-                    acucar.setQuantidadeAtualAcucar(-1 * nivelAcucarSelecionado);
+                    estoque.setQuantidadeAtualPoDeCafe(receita.consumoDeIngrediente);
+                    estoque.setQuantidadeAtualLeiteEmPo(receita.consumoDeIngrediente);
+                    estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
+                    estoque.setQuantidadeAtualChocolate(receita.consumoDeIngrediente);
+                    acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
 
                     receita.receitaDeCappucino();
                     entregaPedido();
@@ -386,9 +386,9 @@ public class Maquina {
                         && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado){
 
                     display.mostraAgradecimentoParaPrepararPedido();
-                    estoque.setQuantidadeAtualChaDeLimao(-1);
-                    estoque.setQuantidadeAtualCopo(-1);
-                    acucar.setQuantidadeAtualAcucar(-1 * nivelAcucarSelecionado);
+                    estoque.setQuantidadeAtualChaDeLimao(receita.consumoDeIngrediente);
+                    estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
+                    acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
 
                     receita.receitaDeCha();
                     entregaPedido();
@@ -402,7 +402,7 @@ public class Maquina {
                 if (estoque.getQuantidadeAtualCopo() != 0) {
 
                     display.mostraAgradecimentoParaPrepararPedido();
-                    estoque.setQuantidadeAtualCopo(-1);
+                    estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
 
                     receita.receitaDeAguaQuente();
                     entregaPedido();
@@ -418,9 +418,9 @@ public class Maquina {
                         && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado) {
 
                     display.mostraAgradecimentoParaPrepararPedido();
-                    estoque.setQuantidadeAtualPoDeCafe(-1);
-                    estoque.setQuantidadeAtualCopo(-1);
-                    acucar.setQuantidadeAtualAcucar(-1 * nivelAcucarSelecionado);
+                    estoque.setQuantidadeAtualPoDeCafe(receita.consumoDeIngrediente);
+                    estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
+                    acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
 
                     receita.receitaDeCafe();
                     entregaPedido();
