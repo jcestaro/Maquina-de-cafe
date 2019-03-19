@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Maquina {
@@ -7,6 +8,7 @@ public class Maquina {
     Ingrediente ingredientes = new Ingrediente();
     Acucar acucar = new Acucar();
     Display display = new Display();
+    Receita receita = new Receita();
     Scanner scanner = new Scanner(System.in);
     private int numeroMaximoOpcoesDeCobranca = 4;
     private int numeroMinimoOpcoesDeCobranca = 1;
@@ -130,15 +132,25 @@ public class Maquina {
     public void maquinaDesligada () {
         display.mostraMaquinaDesligada();
 
-        int selecionarOpcao = scanner.nextInt();
+        try {
+            int selecionarOpcao = scanner.nextInt();
 
-        if (selecionarOpcao == 1) {
-            escolherItemParaReabastecer();
-        } else if (selecionarOpcao == 2){
-            menu.mostraOpcoes();
-            pedirNumeroDoPedido();
-        } else {
-            maquinaDesligada();
+            if (selecionarOpcao == 1) {
+                escolherItemParaReabastecer();
+            } else if (selecionarOpcao == 2) {
+                menu.mostraOpcoes();
+                pedirNumeroDoPedido();
+            } else {
+                maquinaDesligada();
+            }
+        } catch (InputMismatchException ex){
+            if (!scanner.hasNextInt()) {
+                System.out.println("Opção inválida.");
+                System.out.println();
+                System.out.println("A Máquina foi desligada.");
+                scanner.next();
+                maquinaDesligada();
+            }
         }
     }
 
@@ -231,16 +243,16 @@ public class Maquina {
 
         int nivelAcucarSelecionado = scanner.nextInt();
         acucar.selecionarNivelAcucar(nivelAcucarSelecionado, numeroDoPedido);
-        opcoesCobrarPedido(numeroDoPedido);
+        opcoesCobrarPedido(numeroDoPedido, nivelAcucarSelecionado);
     }
 
-    public void opcoesCobrarPedido (int numeroDoPedido){
+    public void opcoesCobrarPedido (int numeroDoPedido, int nivelAcucarSelecionado){
         display.mostraOpcoesParaCobrarPedido();
         int dinheiro = scanner.nextInt();
-        cobrarPedido(dinheiro, numeroDoPedido);
+        cobrarPedido(dinheiro, numeroDoPedido, nivelAcucarSelecionado);
     }
 
-    public void cobrarPedido (int dinheiro, int numeroPedido) {
+    public void cobrarPedido (int dinheiro, int numeroPedido, int nivelAcucarSelecionado) {
 
         if (dinheiro <= numeroMaximoOpcoesDeCobranca && dinheiro >= numeroMinimoOpcoesDeCobranca) {
             switch (dinheiro) {
@@ -254,9 +266,6 @@ public class Maquina {
                     } else if (numeroPedido == 5) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 1.00");
-                        display.mostraAgradecimentoParaPrepararPedido();
-                    } else {
-                        display.mostraAgradecimentoParaPrepararPedido();
                     }
                     break;
 
@@ -264,17 +273,12 @@ public class Maquina {
                     if (numeroPedido == 1 || numeroPedido == 4) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 1.00");
-                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 5) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 2.00");
-                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 2) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 0.50");
-                        display.mostraAgradecimentoParaPrepararPedido();
-                    } else if (numeroPedido == 3) {
-                        display.mostraAgradecimentoParaPrepararPedido();
                     }
                     break;
 
@@ -282,19 +286,15 @@ public class Maquina {
                     if (numeroPedido == 1 || numeroPedido == 4) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 4.00");
-                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 5) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 5.00");
-                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 2) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 3.50");
-                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 3) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 3.00");
-                        display.mostraAgradecimentoParaPrepararPedido();
                     }
                     break;
 
@@ -302,19 +302,15 @@ public class Maquina {
                     if (numeroPedido == 1 || numeroPedido == 4) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 9.00");
-                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 5) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 10.00");
-                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 2) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 8.50");
-                        display.mostraAgradecimentoParaPrepararPedido();
                     } else if (numeroPedido == 3) {
                         System.out.println();
                         System.out.println("Seu troco é: R$ 8.00");
-                        display.mostraAgradecimentoParaPrepararPedido();
                     }
                 break;
             }
@@ -326,107 +322,89 @@ public class Maquina {
             pedirNumeroDoPedido();
         }
 
-        preparaPedido(numeroPedido);
+        preparaPedido(numeroPedido, nivelAcucarSelecionado);
     }
 
-    public void preparaPedido(int numeroPedido) {
+    public void preparaPedido(int numeroPedido, int nivelAcucarSelecionado) {
 
         switch (numeroPedido) {
 
             case 2:
-                try {
-                    System.out.println();
-                    System.out.println("Fervendo a água...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Colocando o pó do café no filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Despejando a água quente no filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Colocando o café no copo...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o leite no copo...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o açucar...");
-                } catch (InterruptedException ex) {
-                    System.out.println(ex);
+                if (estoque.getQuantidadeAtualPoDeCafe() != 0
+                        && estoque.getQuantidadeAtualLeiteEmPo() != 0
+                        && estoque.getQuantidadeAtualCopo() != 0
+                        && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado) {
+
+                    display.mostraAgradecimentoParaPrepararPedido();
+                    estoque.setQuantidadeAtualPoDeCafe(-1);
+                    estoque.setQuantidadeAtualLeiteEmPo(-1);
+                    estoque.setQuantidadeAtualCopo(-1);
+                    acucar.setQuantidadeAtualAcucar(-1 * nivelAcucarSelecionado);
+                    receita.receitaDeCafeComLeite();
+                    entregaPedido();
                 }
                 break;
 
             case 3:
-                try {
-                    System.out.println();
-                    System.out.println("Fervendo a água...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Colocando o pó do café no filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Despejando a água quente no filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Colocando o café no copo...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o leite...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o chocolate em pó...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando a canela em pó...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o açucar...");
-                } catch (InterruptedException ex) {
-                    System.out.println(ex);
+                if (estoque.getQuantidadeAtualPoDeCafe() != 0
+                        && estoque.getQuantidadeAtualLeiteEmPo() != 0
+                        && estoque.getQuantidadeAtualCopo() != 0
+                        && estoque.getQuantidadeAtualChocolate() != 0
+                        && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado){
+
+                    display.mostraAgradecimentoParaPrepararPedido();
+                    estoque.setQuantidadeAtualPoDeCafe(-1);
+                    estoque.setQuantidadeAtualLeiteEmPo(-1);
+                    estoque.setQuantidadeAtualCopo(-1);
+                    estoque.setQuantidadeAtualChocolate(-1);
+                    acucar.setQuantidadeAtualAcucar(-1 * nivelAcucarSelecionado);
+
+                    receita.receitaDeCappucino();
+                    entregaPedido();
                 }
                 break;
 
             case 4:
-                try {
-                    System.out.println();
-                    System.out.println("Fervendo a água...");
-                    Thread.sleep(1000);
-                    System.out.println("Colocando o chá na água...");
-                    Thread.sleep(3000);
-                    System.out.println("Aguarde...");
-                    Thread.sleep(1000);
-                    System.out.println("Colocando o chá no copo...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o açucar...");
-                } catch (InterruptedException ex) {
-                    System.out.println(ex);
+                if (estoque.getQuantidadeAtualChaDeLimao() != 0
+                        && estoque.getQuantidadeAtualCopo() != 0
+                        && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado){
+
+                    display.mostraAgradecimentoParaPrepararPedido();
+                    estoque.setQuantidadeAtualChaDeLimao(-1);
+                    estoque.setQuantidadeAtualCopo(-1);
+                    acucar.setQuantidadeAtualAcucar(-1 * nivelAcucarSelecionado);
+
+                    receita.receitaDeCha();
+                    entregaPedido();
                 }
                 break;
 
             case 5:
-                try {
-                    System.out.println();
-                    System.out.println("Fervendo a água...");
-                    Thread.sleep(2000);
-                    System.out.println("Colocando a água quente no copo.");
-                } catch (InterruptedException ex) {
-                    System.out.println(ex);
+                if (estoque.getQuantidadeAtualCopo() != 0) {
+
+                    display.mostraAgradecimentoParaPrepararPedido();
+                    estoque.setQuantidadeAtualCopo(-1);
+
+                    receita.receitaDeAguaQuente();
+                    entregaPedido();
                 }
                 break;
 
             default:
-                try {
-                    System.out.println();
-                    System.out.println("Fervendo a água...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Colocando o pó do café no filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Despejando a água quente no filtro...");
-                    Thread.sleep(1000);
-                    System.out.println("Colocando o café no copo...");
-                    Thread.sleep(1000);
-                    System.out.println("Adicionando o açucar...");
-                } catch (InterruptedException ex) {
-                    System.out.println(ex);
+                if (estoque.getQuantidadeAtualPoDeCafe() != 0
+                        && estoque.getQuantidadeAtualCopo() != 0
+                        && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado) {
+
+                    display.mostraAgradecimentoParaPrepararPedido();
+                    estoque.setQuantidadeAtualPoDeCafe(-1);
+                    estoque.setQuantidadeAtualCopo(-1);
+                    acucar.setQuantidadeAtualAcucar(-1 * nivelAcucarSelecionado);
+
+                    receita.receitaDeCafe();
+                    entregaPedido();
                 }
                 break;
         }
-        entregaPedido();
     }
 
     public void entregaPedido () {
@@ -439,6 +417,15 @@ public class Maquina {
         catch (InterruptedException ex) {
             System.out.println(ex);
         }
+
+        System.out.println();
+        System.out.println(ingredientes.getPoDeCafe() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualPoDeCafe());
+        System.out.println(ingredientes.getChocolate() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualChocolate());
+        System.out.println(ingredientes.getLeiteEmPo() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualLeiteEmPo());
+        System.out.println(ingredientes.getChaDeLimao() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualChaDeLimao());
+        System.out.println(estoque.getCopo() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualCopo());
+        System.out.println(acucar.getAcucar() + ", Quantidade atual disponível: " + acucar.getQuantidadeAtualAcucar());
+        System.out.println();
 
         display.desligandoMaquina();
         maquinaDesligada();

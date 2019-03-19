@@ -4,7 +4,6 @@ public class Ingrediente {
     private String chocolate = "Chocolate";
     private String leiteEmPo = "Leite em Pó";
     private String chaDeLimao = "Chá de Limão";
-    private String agua = "Água";
     Acucar acucar = new Acucar();
 
     public String getPoDeCafe() {
@@ -22,9 +21,4 @@ public class Ingrediente {
     public String getChaDeLimao() {
         return chaDeLimao;
     }
-
-    public String getAgua() {
-        return agua;
-    }
-
 }

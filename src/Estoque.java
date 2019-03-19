@@ -62,8 +62,7 @@ public class Estoque {
     }
 
     public void setQuantidadeAtualPoDeCafe(int quantidadeAtualPoDeCafe) {
-        if (quantidadeAtualPoDeCafe <= getLimiteEstoquePoDeCafe() && quantidadeAtualPoDeCafe > 0
-                && quantidadeAtualPoDeCafe + this.quantidadeAtualPoDeCafe <= getLimiteEstoquePoDeCafe()) {
+        if (quantidadeAtualPoDeCafe <= getLimiteEstoquePoDeCafe() && quantidadeAtualPoDeCafe + this.quantidadeAtualPoDeCafe <= getLimiteEstoquePoDeCafe()) {
             this.quantidadeAtualPoDeCafe += quantidadeAtualPoDeCafe;
         } else {
             System.out.println("Quantidade de " + ingredientes.getPoDeCafe() + " abastecida inválida.");
@@ -72,8 +71,7 @@ public class Estoque {
         }
     }
     public void setQuantidadeAtualChocolate(int quantidadeAtualChocolate) {
-        if (quantidadeAtualChocolate <= getLimiteEstoqueChocolate() && quantidadeAtualChocolate > 0
-                && quantidadeAtualChocolate + this.quantidadeAtualChocolate <= getLimiteEstoqueChocolate()) {
+        if (quantidadeAtualChocolate <= getLimiteEstoqueChocolate() && quantidadeAtualChocolate + this.quantidadeAtualChocolate <= getLimiteEstoqueChocolate()) {
             this.quantidadeAtualChocolate += quantidadeAtualChocolate;
         } else {
             System.out.println("Quantidade de " + ingredientes.getChocolate() + " abastecida inválida.");
@@ -83,8 +81,7 @@ public class Estoque {
     }
 
     public void setQuantidadeAtualChaDeLimao(int quantidadeAtualChaDeLimao) {
-        if (quantidadeAtualChaDeLimao <= getLimiteEstoqueChaDeLimao() && quantidadeAtualChaDeLimao > 0
-                && quantidadeAtualChaDeLimao + this.quantidadeAtualChaDeLimao <= getLimiteEstoqueChaDeLimao()){
+        if (quantidadeAtualChaDeLimao <= getLimiteEstoqueChaDeLimao() && quantidadeAtualChaDeLimao + this.quantidadeAtualChaDeLimao <= getLimiteEstoqueChaDeLimao()){
             this.quantidadeAtualChaDeLimao += quantidadeAtualChaDeLimao;
         } else {
             System.out.println("Quantidade de " + ingredientes.getChaDeLimao() + " abastecida inválida.");
@@ -94,8 +91,7 @@ public class Estoque {
     }
 
     public void setQuantidadeAtualLeiteEmPo(int quantidadeAtualLeiteEmPo) {
-        if (quantidadeAtualLeiteEmPo <= getLimiteEstoqueLeiteEmPo() && quantidadeAtualLeiteEmPo > 0
-                && quantidadeAtualLeiteEmPo + this.quantidadeAtualLeiteEmPo <= getLimiteEstoqueLeiteEmPo()){
+        if (quantidadeAtualLeiteEmPo <= getLimiteEstoqueLeiteEmPo() && quantidadeAtualLeiteEmPo + this.quantidadeAtualLeiteEmPo <= getLimiteEstoqueLeiteEmPo()){
             this.quantidadeAtualLeiteEmPo += quantidadeAtualLeiteEmPo;
         } else {
             System.out.println("Quantidade de " + ingredientes.getLeiteEmPo() + " abastecida inválida.");
@@ -105,8 +101,7 @@ public class Estoque {
     }
 
     public void setQuantidadeAtualCopo(int quantidadeAtualCopo) {
-        if (quantidadeAtualCopo <= getLimiteEstoqueCopo() && quantidadeAtualCopo > 0
-                && quantidadeAtualCopo + this.quantidadeAtualCopo <= getLimiteEstoqueCopo()) {
+        if (quantidadeAtualCopo <= getLimiteEstoqueCopo() && quantidadeAtualCopo + this.quantidadeAtualCopo <= getLimiteEstoqueCopo()) {
             this.quantidadeAtualCopo += quantidadeAtualCopo;
         } else {
             System.out.println("Quantidade de " + getCopo() + " abastecida inválida.");

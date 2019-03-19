@@ -51,8 +51,7 @@ public class Acucar {
     }
 
     public void setQuantidadeAtualAcucar(int quantidadeAtualAcucar) {
-        if (quantidadeAtualAcucar <= getLimiteEstoqueAcucar() && quantidadeAtualAcucar > 0
-                && quantidadeAtualAcucar + this.quantidadeAtualAcucar <= getLimiteEstoqueAcucar()){
+        if (quantidadeAtualAcucar <= getLimiteEstoqueAcucar() && quantidadeAtualAcucar + this.quantidadeAtualAcucar <= getLimiteEstoqueAcucar()){
             this.quantidadeAtualAcucar += quantidadeAtualAcucar;
         } else {
             System.out.println("Quantidade de " + getAcucar() + " abastecida inválida.");
