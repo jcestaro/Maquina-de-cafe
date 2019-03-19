@@ -13,6 +13,15 @@ public class Maquina {
     private int numeroMaximoOpcoesDeCobranca = 4;
     private int numeroMinimoOpcoesDeCobranca = 1;
 
+    public void quantidadeAtualEstoque (){
+        System.out.println(ingredientes.getPoDeCafe() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualPoDeCafe());
+        System.out.println(ingredientes.getChocolate() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualChocolate());
+        System.out.println(ingredientes.getLeiteEmPo() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualLeiteEmPo());
+        System.out.println(ingredientes.getChaDeLimao() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualChaDeLimao());
+        System.out.println(estoque.getCopo() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualCopo());
+        System.out.println(acucar.getAcucar() + ", Quantidade atual disponível: " + acucar.getQuantidadeAtualAcucar());
+    }
+
     public void escolherQntdUnidadesParaAbastecimento (int numeroDoIngredienteParaReabastecer, int quantidadeDeUnidades) {
         switch (numeroDoIngredienteParaReabastecer) {
             case 1:
@@ -117,12 +126,12 @@ public class Maquina {
     public void escolherItemParaReabastecer () {
         System.out.println("Por favor escolha um item para reabastecer");
         System.out.println();
-        System.out.println("1. " + ingredientes.getPoDeCafe() + ", Maximo de unidades: " + estoque.getLimiteEstoquePoDeCafe() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualPoDeCafe());
-        System.out.println("2. " + ingredientes.getChocolate() + ", Maximo de unidades: " + estoque.getLimiteEstoqueChocolate() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualChocolate());
-        System.out.println("3. " + ingredientes.getLeiteEmPo() + ", Maximo de unidades: " + estoque.getLimiteEstoqueLeiteEmPo() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualLeiteEmPo());
-        System.out.println("4. " + ingredientes.getChaDeLimao() + ", Maximo de unidades: " + estoque.getLimiteEstoqueChaDeLimao() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualChaDeLimao());
-        System.out.println("5. " + estoque.getCopo() + ", Maximo de unidades: " + estoque.getLimiteEstoqueCopo() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualCopo());
-        System.out.println("6. " + acucar.getAcucar() + ", Maximo de unidades: " + ingredientes.acucar.getLimiteEstoqueAcucar() + ", Quantidade atual disponível: " + acucar.getQuantidadeAtualAcucar());
+        System.out.println("1. " + ingredientes.getPoDeCafe() + ", Maximo de unidades: " + estoque.getLimiteEstoquePoDeCafe());
+        System.out.println("2. " + ingredientes.getChocolate() + ", Maximo de unidades: " + estoque.getLimiteEstoqueChocolate());
+        System.out.println("3. " + ingredientes.getLeiteEmPo() + ", Maximo de unidades: " + estoque.getLimiteEstoqueLeiteEmPo());
+        System.out.println("4. " + ingredientes.getChaDeLimao() + ", Maximo de unidades: " + estoque.getLimiteEstoqueChaDeLimao());
+        System.out.println("5. " + estoque.getCopo() + ", Maximo de unidades: " + estoque.getLimiteEstoqueCopo());
+        System.out.println("6. " + acucar.getAcucar() + ", Maximo de unidades: " + ingredientes.acucar.getLimiteEstoqueAcucar());
         System.out.println();
 
         int numeroDoIngredienteParaReabastecer = scanner.nextInt();
@@ -131,6 +140,7 @@ public class Maquina {
 
     public void maquinaDesligada () {
         display.mostraMaquinaDesligada();
+        quantidadeAtualEstoque();
 
         try {
             int selecionarOpcao = scanner.nextInt();
@@ -342,6 +352,9 @@ public class Maquina {
                     acucar.setQuantidadeAtualAcucar(-1 * nivelAcucarSelecionado);
                     receita.receitaDeCafeComLeite();
                     entregaPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
                 }
                 break;
 
@@ -361,6 +374,9 @@ public class Maquina {
 
                     receita.receitaDeCappucino();
                     entregaPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
                 }
                 break;
 
@@ -376,6 +392,9 @@ public class Maquina {
 
                     receita.receitaDeCha();
                     entregaPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
                 }
                 break;
 
@@ -387,6 +406,9 @@ public class Maquina {
 
                     receita.receitaDeAguaQuente();
                     entregaPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
                 }
                 break;
 
@@ -402,6 +424,9 @@ public class Maquina {
 
                     receita.receitaDeCafe();
                     entregaPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
                 }
                 break;
         }
@@ -417,15 +442,6 @@ public class Maquina {
         catch (InterruptedException ex) {
             System.out.println(ex);
         }
-
-        System.out.println();
-        System.out.println(ingredientes.getPoDeCafe() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualPoDeCafe());
-        System.out.println(ingredientes.getChocolate() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualChocolate());
-        System.out.println(ingredientes.getLeiteEmPo() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualLeiteEmPo());
-        System.out.println(ingredientes.getChaDeLimao() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualChaDeLimao());
-        System.out.println(estoque.getCopo() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualCopo());
-        System.out.println(acucar.getAcucar() + ", Quantidade atual disponível: " + acucar.getQuantidadeAtualAcucar());
-        System.out.println();
 
         display.desligandoMaquina();
         maquinaDesligada();

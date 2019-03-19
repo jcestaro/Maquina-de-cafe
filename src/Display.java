@@ -1,5 +1,12 @@
 public class Display {
 
+    public void mostraMensagemEstoqueInsuficiente () {
+        System.out.println();
+        System.out.println("Items no Estoque insuficiente, por favor abasteça a máquina e tente novamente.");
+        System.out.println();
+        desligandoMaquina();
+    }
+
     public void mostraMaquinaDesligada () {
         System.out.println();
         System.out.println("------Maquina desligada------");
