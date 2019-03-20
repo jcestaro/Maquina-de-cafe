@@ -188,40 +188,78 @@ public class Maquina {
     public void selecionarPedido (int numeroPedido) {
         switch (numeroPedido) {
             case 1:
-                System.out.println();
-                System.out.println("Você selecionou: " + menu.getCafe());
-                display.mostraPerguntaDeConfirmacaoDoPedido();
+                if (estoque.getQuantidadeAtualPoDeCafe() != 0
+                        && estoque.getQuantidadeAtualCopo() != 0) {
+                    System.out.println();
+                    System.out.println("Você selecionou: " + menu.getCafe());
+                    display.mostraPerguntaDeConfirmacaoDoPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
+                }
                 break;
 
             case 2:
-                System.out.println();
-                System.out.println("Você selecionou: " + menu.getCafeComLeite());
-                display.mostraPerguntaDeConfirmacaoDoPedido();
+                if (estoque.getQuantidadeAtualPoDeCafe() != 0
+                        && estoque.getQuantidadeAtualLeiteEmPo() != 0
+                        && estoque.getQuantidadeAtualCopo() != 0) {
+                    System.out.println();
+                    System.out.println("Você selecionou: " + menu.getCafeComLeite());
+                    display.mostraPerguntaDeConfirmacaoDoPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
+                }
                 break;
 
             case 3:
-                System.out.println();
-                System.out.println("Você selecionou: " + menu.getCapuccino());
-                display.mostraPerguntaDeConfirmacaoDoPedido();
-                break;
+                if (estoque.getQuantidadeAtualPoDeCafe() != 0
+                        && estoque.getQuantidadeAtualLeiteEmPo() != 0
+                        && estoque.getQuantidadeAtualCopo() != 0
+                        && estoque.getQuantidadeAtualChocolate() != 0) {
 
+                    System.out.println();
+                    System.out.println("Você selecionou: " + menu.getCapuccino());
+                    display.mostraPerguntaDeConfirmacaoDoPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
+                }
+                break;
             case 4:
-                System.out.println();
-                System.out.println("Você selecionou: " + menu.getCha());
-                display.mostraPerguntaDeConfirmacaoDoPedido();
+                if (estoque.getQuantidadeAtualChaDeLimao() != 0
+                        && estoque.getQuantidadeAtualCopo() != 0) {
+                    System.out.println();
+                    System.out.println("Você selecionou: " + menu.getCha());
+                    display.mostraPerguntaDeConfirmacaoDoPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
+                }
                 break;
 
             case 5:
-                System.out.println();
-                System.out.println("Você selecionou: " + menu.getAguaQuente());
-                display.mostraPerguntaDeConfirmacaoDoPedido();
+                if (estoque.getQuantidadeAtualCopo() != 0) {
+                    System.out.println();
+                    System.out.println("Você selecionou: " + menu.getAguaQuente());
+                    display.mostraPerguntaDeConfirmacaoDoPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
+                }
                 break;
 
             default:
-                System.out.println();
-                System.out.println("Você não selecionou nenhuma opção válida, portanto a opção padrão é: "
-                        + menu.getCafe());
-                display.mostraPerguntaDeConfirmacaoDoPedido();
+                if (estoque.getQuantidadeAtualPoDeCafe() != 0
+                        && estoque.getQuantidadeAtualCopo() != 0) {
+                    System.out.println();
+                    System.out.println("Você não selecionou nenhuma opção válida, portanto a opção padrão é: "
+                            + menu.getCafe());
+                    display.mostraPerguntaDeConfirmacaoDoPedido();
+                } else {
+                    display.mostraMensagemEstoqueInsuficiente();
+                    maquinaDesligada();
+                }
                 break;
         }
 
@@ -252,8 +290,13 @@ public class Maquina {
         }
 
         int nivelAcucarSelecionado = scanner.nextInt();
-        acucar.selecionarNivelAcucar(nivelAcucarSelecionado, numeroDoPedido);
-        opcoesCobrarPedido(numeroDoPedido, nivelAcucarSelecionado);
+        if (acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado) {
+            acucar.selecionarNivelAcucar(nivelAcucarSelecionado, numeroDoPedido);
+            opcoesCobrarPedido(numeroDoPedido, nivelAcucarSelecionado);
+        } else {
+            display.mostraMensagemEstoqueInsuficiente();
+            maquinaDesligada();
+        }
     }
 
     public void opcoesCobrarPedido (int numeroDoPedido, int nivelAcucarSelecionado){
@@ -340,94 +383,53 @@ public class Maquina {
         switch (numeroPedido) {
 
             case 2:
-                if (estoque.getQuantidadeAtualPoDeCafe() != 0
-                        && estoque.getQuantidadeAtualLeiteEmPo() != 0
-                        && estoque.getQuantidadeAtualCopo() != 0
-                        && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado) {
-
-                    display.mostraAgradecimentoParaPrepararPedido();
-                    estoque.setQuantidadeAtualPoDeCafe(receita.consumoDeIngrediente);
-                    estoque.setQuantidadeAtualLeiteEmPo(receita.consumoDeIngrediente);
-                    estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
-                    acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
-                    receita.receitaDeCafeComLeite();
-                    entregaPedido();
-                } else {
-                    display.mostraMensagemEstoqueInsuficiente();
-                    maquinaDesligada();
-                }
+                display.mostraAgradecimentoParaPrepararPedido();
+                estoque.setQuantidadeAtualPoDeCafe(receita.consumoDeIngrediente);
+                estoque.setQuantidadeAtualLeiteEmPo(receita.consumoDeIngrediente);
+                estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
+                acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
+                receita.receitaDeCafeComLeite();
+                entregaPedido();
                 break;
 
             case 3:
-                if (estoque.getQuantidadeAtualPoDeCafe() != 0
-                        && estoque.getQuantidadeAtualLeiteEmPo() != 0
-                        && estoque.getQuantidadeAtualCopo() != 0
-                        && estoque.getQuantidadeAtualChocolate() != 0
-                        && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado){
+                display.mostraAgradecimentoParaPrepararPedido();
+                estoque.setQuantidadeAtualPoDeCafe(receita.consumoDeIngrediente);
+                estoque.setQuantidadeAtualLeiteEmPo(receita.consumoDeIngrediente);
+                estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
+                estoque.setQuantidadeAtualChocolate(receita.consumoDeIngrediente);
+                acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
 
-                    display.mostraAgradecimentoParaPrepararPedido();
-                    estoque.setQuantidadeAtualPoDeCafe(receita.consumoDeIngrediente);
-                    estoque.setQuantidadeAtualLeiteEmPo(receita.consumoDeIngrediente);
-                    estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
-                    estoque.setQuantidadeAtualChocolate(receita.consumoDeIngrediente);
-                    acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
-
-                    receita.receitaDeCappucino();
-                    entregaPedido();
-                } else {
-                    display.mostraMensagemEstoqueInsuficiente();
-                    maquinaDesligada();
-                }
+                receita.receitaDeCappucino();
+                entregaPedido();
                 break;
 
             case 4:
-                if (estoque.getQuantidadeAtualChaDeLimao() != 0
-                        && estoque.getQuantidadeAtualCopo() != 0
-                        && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado){
+                display.mostraAgradecimentoParaPrepararPedido();
+                estoque.setQuantidadeAtualChaDeLimao(receita.consumoDeIngrediente);
+                estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
+                acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
 
-                    display.mostraAgradecimentoParaPrepararPedido();
-                    estoque.setQuantidadeAtualChaDeLimao(receita.consumoDeIngrediente);
-                    estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
-                    acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
-
-                    receita.receitaDeCha();
-                    entregaPedido();
-                } else {
-                    display.mostraMensagemEstoqueInsuficiente();
-                    maquinaDesligada();
-                }
+                receita.receitaDeCha();
+                entregaPedido();
                 break;
 
             case 5:
-                if (estoque.getQuantidadeAtualCopo() != 0) {
+                display.mostraAgradecimentoParaPrepararPedido();
+                estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
 
-                    display.mostraAgradecimentoParaPrepararPedido();
-                    estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
-
-                    receita.receitaDeAguaQuente();
-                    entregaPedido();
-                } else {
-                    display.mostraMensagemEstoqueInsuficiente();
-                    maquinaDesligada();
-                }
+                receita.receitaDeAguaQuente();
+                entregaPedido();
                 break;
 
             default:
-                if (estoque.getQuantidadeAtualPoDeCafe() != 0
-                        && estoque.getQuantidadeAtualCopo() != 0
-                        && acucar.getQuantidadeAtualAcucar() > 1 * nivelAcucarSelecionado) {
+                display.mostraAgradecimentoParaPrepararPedido();
+                estoque.setQuantidadeAtualPoDeCafe(receita.consumoDeIngrediente);
+                estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
+                acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
 
-                    display.mostraAgradecimentoParaPrepararPedido();
-                    estoque.setQuantidadeAtualPoDeCafe(receita.consumoDeIngrediente);
-                    estoque.setQuantidadeAtualCopo(receita.consumoDeIngrediente);
-                    acucar.setQuantidadeAtualAcucar(receita.consumoDeIngrediente * nivelAcucarSelecionado);
-
-                    receita.receitaDeCafe();
-                    entregaPedido();
-                } else {
-                    display.mostraMensagemEstoqueInsuficiente();
-                    maquinaDesligada();
-                }
+                receita.receitaDeCafe();
+                entregaPedido();
                 break;
         }
     }
