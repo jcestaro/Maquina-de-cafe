@@ -12,6 +12,10 @@ public class Maquina {
     Scanner scanner = new Scanner(System.in);
     private int numeroMaximoOpcoesDeCobranca = 4;
     private int numeroMinimoOpcoesDeCobranca = 1;
+    private int opcaoAbrirCompartimento = 1;
+    private int opcaoFecharCompartimento = 1;
+    private int opcaoLigarMaquina = 2;
+
 
     public void quantidadeAtualEstoque (){
         System.out.println(ingredientes.getPoDeCafe() + ", Quantidade atual disponível: " + estoque.getQuantidadeAtualPoDeCafe());
@@ -145,9 +149,9 @@ public class Maquina {
         try {
             int selecionarOpcao = scanner.nextInt();
 
-            if (selecionarOpcao == 1) {
+            if (selecionarOpcao == opcaoAbrirCompartimento) {
                 escolherItemParaReabastecer();
-            } else if (selecionarOpcao == 2) {
+            } else if (selecionarOpcao == opcaoLigarMaquina) {
                 menu.mostraOpcoes();
                 pedirNumeroDoPedido();
             } else {
@@ -170,7 +174,7 @@ public class Maquina {
 
         int selecionarOpcao = scanner.nextInt();
 
-        if (selecionarOpcao == 1){
+        if (selecionarOpcao == opcaoFecharCompartimento){
             maquinaDesligada();
         } else {
             escolherItemParaReabastecer();
