@@ -199,6 +199,7 @@ public class Maquina {
                     display.mostraPerguntaDeConfirmacaoDoPedido();
                 } else {
                     display.mostraMensagemEstoqueInsuficiente();
+                    display.desligandoMaquina();
                     maquinaDesligada();
                 }
                 break;
@@ -212,6 +213,7 @@ public class Maquina {
                     display.mostraPerguntaDeConfirmacaoDoPedido();
                 } else {
                     display.mostraMensagemEstoqueInsuficiente();
+                    display.desligandoMaquina();
                     maquinaDesligada();
                 }
                 break;
@@ -227,6 +229,7 @@ public class Maquina {
                     display.mostraPerguntaDeConfirmacaoDoPedido();
                 } else {
                     display.mostraMensagemEstoqueInsuficiente();
+                    display.desligandoMaquina();
                     maquinaDesligada();
                 }
                 break;
@@ -238,6 +241,7 @@ public class Maquina {
                     display.mostraPerguntaDeConfirmacaoDoPedido();
                 } else {
                     display.mostraMensagemEstoqueInsuficiente();
+                    display.desligandoMaquina();
                     maquinaDesligada();
                 }
                 break;
@@ -249,6 +253,7 @@ public class Maquina {
                     display.mostraPerguntaDeConfirmacaoDoPedido();
                 } else {
                     display.mostraMensagemEstoqueInsuficiente();
+                    display.desligandoMaquina();
                     maquinaDesligada();
                 }
                 break;
@@ -262,6 +267,7 @@ public class Maquina {
                     display.mostraPerguntaDeConfirmacaoDoPedido();
                 } else {
                     display.mostraMensagemEstoqueInsuficiente();
+                    display.desligandoMaquina();
                     maquinaDesligada();
                 }
                 break;
@@ -299,6 +305,7 @@ public class Maquina {
             opcoesCobrarPedido(numeroDoPedido, nivelAcucarSelecionado);
         } else {
             display.mostraMensagemEstoqueInsuficiente();
+            display.desligandoMaquina();
             maquinaDesligada();
         }
     }
