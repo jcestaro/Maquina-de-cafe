@@ -1,3 +1,5 @@
+import DesignPattern.ChainOfResponsibility.*;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -76,51 +78,24 @@ public class Maquina {
     }
 
     public void abastecerItemEscolhido (int numeroDoIngredienteParaReabastecer) {
-        switch (numeroDoIngredienteParaReabastecer) {
-            case 1:
-                System.out.println();
-                System.out.println("Você escolheu reabastecer: " + ingredientes.getPoDeCafe());
-                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
-                break;
 
-            case 2:
-                System.out.println();
-                System.out.println("Você escolheu reabastecer: " + ingredientes.getChocolate());
-                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
-                break;
+        Reabastecimento opcaoPoDeCafe = new OpcaoPoDeCafe();
+        Reabastecimento opcaoChocolate = new OpcaoChocolate();
+        Reabastecimento opcaoLeiteEmPo = new OpcaoLeiteEmPo();
+        Reabastecimento opcaoChaDeLimao = new OpcaoChaDeLimao();
+        Reabastecimento opcaoCopo = new OpcaoCopo();
+        Reabastecimento opcaoAcucar = new OpcaoAcucar();
+        Reabastecimento opcaoInvalida = new OpcaoInvalida();
 
-            case 3:
-                System.out.println();
-                System.out.println("Você escolheu reabastecer: " + ingredientes.getLeiteEmPo());
-                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
-                break;
+        opcaoPoDeCafe.setProximo(opcaoChocolate);
+        opcaoChocolate.setProximo(opcaoLeiteEmPo);
+        opcaoLeiteEmPo.setProximo(opcaoChaDeLimao);
+        opcaoChaDeLimao.setProximo(opcaoCopo);
+        opcaoCopo.setProximo(opcaoAcucar);
+        opcaoAcucar.setProximo(opcaoInvalida);
 
-            case 4:
-                System.out.println();
-                System.out.println("Você escolheu reabastecer: " + ingredientes.getChaDeLimao());
-                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
-                break;
+        opcaoPoDeCafe.adicionarEstoque(numeroDoIngredienteParaReabastecer);
 
-            case 5:
-                System.out.println();
-                System.out.println("Você escolheu reabastecer: " + estoque.getCopo());
-                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
-                break;
-
-            case 6:
-                System.out.println();
-                System.out.println("Você escolheu reabastecer: " + acucar.getAcucar());
-                System.out.println("Insira a quantidade de unidades para reabastecer esse item.");
-                System.out.println();
-                break;
-
-            default:
-                System.out.println();
-                System.out.println("Nenhum item válido selecionado");
-                System.out.println();
-                escolherItemParaReabastecer();
-                break;
-        }
 
         int quantidadeDeUnidades = scanner.nextInt();
 
